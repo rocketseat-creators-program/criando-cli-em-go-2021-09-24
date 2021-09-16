@@ -56,7 +56,7 @@ func (cr *CommandRoot) Start(commandList []Command) error {
 
 	for _, command := range cr.commands {
 		if userCommand.Command == command.Name() {
-			flagSet := flag.NewFlagSet(command.Name(), flag.ExitOnError)
+			flagSet := flag.NewFlagSet(command.Name(), flag.ContinueOnError)
 			command.Register(flagSet)
 			flagSet.Parse(os.Args[2:])
 			command.Run()
